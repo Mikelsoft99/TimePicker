@@ -1,2 +1,0 @@
-# TimePicker
-Created with CodeSandbox

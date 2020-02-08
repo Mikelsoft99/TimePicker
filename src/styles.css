@@ -1,0 +1,51 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+h1 {
+  color: blue;
+}
+
+.tp {
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+}
+.tp .tp_hour,
+.tp .tp_min {
+  display: inline-block;
+  height: 110px;
+  width: 100px;
+  overflow: hidden;
+  overflow-y: scroll;
+  border: solid 1px black;
+}
+.tp .tp_hour {
+  width: 60px;
+}
+.tp .tp_min {
+  overflow: hidden;
+  width: 80px;
+}
+
+.tp .tp_min .tp_min_wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: middle;
+}
+.tp .tp_min .tp_min_wrapper .tp_min_item {
+  display: inline-block;
+  text-align: center;
+  padding: 3px;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0px 2px 2px 0;
+}
+.tp .tp_min .tp_min_wrapper .tp_min_item:hover {
+  background-color: rgb(160, 151, 151);
+  cursor: pointer;
+}
+.tp .tp_min .tp_min_wrapper .tp_min_linebreak {
+  width: 100%;
+}
