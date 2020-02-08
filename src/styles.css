@@ -3,10 +3,6 @@
   text-align: center;
 }
 
-h1 {
-  color: blue;
-}
-
 .tp {
   text-align: left;
   display: flex;
@@ -15,37 +11,39 @@ h1 {
 .tp .tp_hour,
 .tp .tp_min {
   display: inline-block;
-  height: 110px;
-  width: 100px;
-  overflow: hidden;
-  overflow-y: scroll;
+  height: auto;
   border: solid 1px black;
 }
 .tp .tp_hour {
-  width: 60px;
+  width: 132px;
 }
 .tp .tp_min {
-  overflow: hidden;
-  width: 80px;
+  width: 66px;
 }
 
+.tp .tp_hour .tp_hour_scrollwrapper,
 .tp .tp_min .tp_min_wrapper {
   display: flex;
   flex-flow: row wrap;
-  justify-content: middle;
+  justify-content: flex-start;
 }
-.tp .tp_min .tp_min_wrapper .tp_min_item {
-  display: inline-block;
+
+.tp .tp_hour .tp_hour_item,
+.tp .tp_min .tp_min_item {
+  flex: 22px;
   text-align: center;
-  padding: 3px;
-  text-align: center;
-  vertical-align: middle;
-  margin: 0px 2px 2px 0;
+  line-height: 1.4;
 }
-.tp .tp_min .tp_min_wrapper .tp_min_item:hover {
+.tp .tp_hour .tp_hour_item:hover,
+.tp .tp_min .tp_min_item:hover {
   background-color: rgb(160, 151, 151);
   cursor: pointer;
 }
+
+.tp .selected {
+  background-color: lightskyblue;
+}
+
 .tp .tp_min .tp_min_wrapper .tp_min_linebreak {
   width: 100%;
 }
