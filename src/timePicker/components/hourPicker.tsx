@@ -1,7 +1,16 @@
 import * as React from "react";
 
-function hourPicker(selected: number) {
-  let hours: number[] = [
+interface Props {
+  selected: number;
+  onSelect: (n: number) => void;
+}
+
+export class HourPicker extends React.Component<Props, {}> {
+  constructor(p) {
+    super(p);
+  }
+
+  hours: number[] = [
     0,
     1,
     2,
@@ -28,25 +37,52 @@ function hourPicker(selected: number) {
     23
   ];
 
-  return (
-    <div className="tp_hour_wrapper">
-      <div className="tp_hour_scrollwrapper">
-        {hours.map((h, i) => {
-          let s: boolean = false;
-          if (selected === h) {
-            s = true;
-          }
-          return hourItem(h, s);
-        })}
+  render() {
+    return (
+      <div className="tp_hour_wrapper">
+        <div className="tp_hour_scrollwrapper">
+          {this.hours.map((h, i) => {
+            let s: boolean = false;
+            if (this.props.selected === h) {
+              s = true;
+            }
+            return (
+              <HourItem
+                key={i}
+                text={h}
+                selected={s}
+                onClick={this.props.onSelect}
+              />
+            );
+          })}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-function hourItem(text: any, selected: boolean) {
-  let css = selected ? "selected" : "";
-
-  return <div className={"tp_hour_item " + css}>{text}</div>;
+interface ItemProps {
+  text: number;
+  selected: boolean;
+  onClick: (n: number) => void;
 }
+class HourItem extends React.Component<ItemProps, {}> {
+  constructor(p) {
+    super(p);
+    this.click = this.click.bind(this);
+  }
 
-export default hourPicker;
+  click() {
+    this.props.onClick(this.props.text);
+  }
+
+  render() {
+    let css = this.props.selected ? "selected" : "";
+
+    return (
+      <div className={"tp_hour_item " + css} onClick={this.click}>
+        {this.props.text}
+      </div>
+    );
+  }
+}
