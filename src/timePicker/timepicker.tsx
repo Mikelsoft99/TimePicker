@@ -1,6 +1,7 @@
 import * as React from "react";
 import { MinutesPicker } from "./components/minutesPicker";
 import { HourPicker } from "./components/hourPicker";
+import moment from "moment";
 
 interface Props {
   hour: number;
@@ -8,10 +9,9 @@ interface Props {
   OnSelectHour: (n: number) => void;
   OnSelectMin: (n: number) => void;
 }
-
 interface State {}
 
-export class TimePicker extends React.Component<Props, State> {
+class TimePickerInput extends React.Component<Props, State> {
   constructor(p) {
     super(p);
   }
@@ -32,6 +32,49 @@ export class TimePicker extends React.Component<Props, State> {
           />
         </div>
       </div>
+    );
+  }
+}
+
+// wrapper for date logic
+interface ITPProps {
+  Time: Date;
+  OnChange: (d: Date) => void;
+}
+export class TimePicker extends React.Component<ITPProps, {}> {
+  constructor(p) {
+    super(p);
+
+    this.changeMin = this.changeMin.bind(this);
+    this.changeHour = this.changeHour.bind(this);
+  }
+
+  changeMin(n: number) {
+    let newTime: Date = moment(this.props.time)
+      .minute(n)
+      .second(0)
+      .toDate();
+    this.props.OnChange(newTime);
+  }
+  changeHour(n: number) {
+    let newTime: Date = moment(this.props.time)
+      .hour(n)
+      .second(0)
+      .toDate();
+    this.props.OnChange(newTime);
+  }
+
+  render() {
+    let hour = moment(this.props.time).hour();
+    let min = moment(this.props.time).minute();
+
+    return (
+      <TimePickerInput
+        hour={hour}
+        minute={min}
+        OnSelectHour={this.changeHour}
+        OnSelectMin={this.changeMin}
+      />
     );
   }
 }
