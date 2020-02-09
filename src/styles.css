@@ -1,6 +1,8 @@
 .App {
   font-family: sans-serif;
-  text-align: center;
+}
+.divider {
+  margin-bottom: 20px;
 }
 
 .tp {
