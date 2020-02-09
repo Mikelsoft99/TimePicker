@@ -50,14 +50,14 @@ export class TimePicker extends React.Component<ITPProps, {}> {
   }
 
   changeMin(n: number) {
-    let newTime: Date = moment(this.props.time)
+    let newTime: Date = moment(this.props.Time)
       .minute(n)
       .second(0)
       .toDate();
     this.props.OnChange(newTime);
   }
   changeHour(n: number) {
-    let newTime: Date = moment(this.props.time)
+    let newTime: Date = moment(this.props.Time)
       .hour(n)
       .second(0)
       .toDate();
@@ -65,8 +65,8 @@ export class TimePicker extends React.Component<ITPProps, {}> {
   }
 
   render() {
-    let hour = moment(this.props.time).hour();
-    let min = moment(this.props.time).minute();
+    let hour = moment(this.props.Time).hour();
+    let min = moment(this.props.Time).minute();
 
     return (
       <TimePickerInput
